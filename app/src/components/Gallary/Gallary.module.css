@@ -1,0 +1,16 @@
+#gallaryConteiner{
+    border: 1px solid rgba(128, 128, 128, 0.219);
+    border-radius: 5px;
+    box-shadow: 0px -1px 20px 5px rgba(79, 79, 79, 0.2);
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.gallaryImg{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+}

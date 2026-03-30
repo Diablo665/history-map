@@ -1,0 +1,39 @@
+#mainConteiner{
+    display: flex;
+}
+
+h3{
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 10px;
+}
+
+#leftPanel, #rightPanel{
+    border:none;
+}
+
+#leftPanel {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vh - 30%);
+    flex: 0 1 70%;
+    box-sizing: border-box;
+}
+
+#rightPanel {
+    flex: 0 1 30%; 
+    box-sizing: border-box;
+    overflow-y: auto;
+    margin-left: 5px;
+}
+
+@media (max-width: 1250px) {
+
+#mainConteiner{
+    flex-direction: column;
+}
+
+#leftPanel, #rightPanel{
+    width: 100%
+}
+
+}
