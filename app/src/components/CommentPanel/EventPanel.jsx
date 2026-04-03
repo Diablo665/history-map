@@ -41,7 +41,7 @@ const EventPanel = () => {
 
     return (
         <div id={styles.eventPanel}> 
-            <h3> Поледнии события: </h3>
+            <h3> Последние события </h3>
             {lastEvents && lastEvents.length === 0 ?  <div id={styles.noEventBlock}> Нет новых событий </div> 
 
                 : 
