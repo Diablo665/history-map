@@ -2,6 +2,7 @@ import React from 'react';
 import MapPanel from './components/MapPanel/MapPanel';
 import EventPanel from './components/CommentPanel/EventPanel';
 import Gallary from './components/Gallary/Gallary';
+import PopupPanel from './components/PopupPanel/PopupPanel';
 import "./styles.css"
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <div id="rightPanel"> 
                 <EventPanel />
             </div>
+            <PopupPanel />
         </div>
     );
 }

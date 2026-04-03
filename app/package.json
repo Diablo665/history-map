@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.5",
-    "@yandex/ymaps3-default-ui-theme": "^0.0.24",
-    "dotenv": "^17.3.1",
+    "@reduxjs/toolkit": "^2.11.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-redux": "^9.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "webpack-cli": "^7.0.2"
@@ -37,12 +37,6 @@
     ]
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.1",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "react-app-rewired": "^2.2.1",
-    "stream-browserify": "^3.0.0"
+    "dotenv-webpack": "^9.0.0"
   }
 }
