@@ -1,0 +1,36 @@
+#mainConteiner {
+    display: flex;
+
+}
+
+#mapPanel {
+    flex: 0 1 50%;
+    width: calc(100vh - 50%)
+}
+
+#addPointInfoPanel {
+    flex: 0 1 50%;
+    border: 1px solid grey;
+    height: 100%;
+    background: #e6e7e9;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 0 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (max-width: 1024px) {
+    #mainConteiner {
+        flex-direction: column;
+    }
+
+    #mapPanel {
+        flex: 0 1 50%;
+        width: 100%;
+    }
+
+    #addPointInfoPanel {
+        margin: 5px 5px;
+    }
+}
