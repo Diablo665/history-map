@@ -3,7 +3,7 @@ import styles from './AddPointPanel.module.css';
 
 const AddPointPanel = ({ mapCoords }) => {
 
-    const API_URL = process.env.REACT_APP_MAIN_API 
+    const API_URL = process.env.REACT_APP_MAIN_API
     const [formData, setFormData] = useState({
         latitude: '',
         longitude: '',
@@ -14,7 +14,7 @@ const AddPointPanel = ({ mapCoords }) => {
         audios: [],
     });
     const [selectedFiles, setSelectedFiles] = useState([]);
-    const [isSubmitting, setIsSubmitting] = useState(false); 
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (mapCoords) {
@@ -31,7 +31,7 @@ const AddPointPanel = ({ mapCoords }) => {
 
         if (files) {
             const filesArray = Array.from(files);
-            setSelectedFiles(prev => [...prev, ...filesArray]); 
+            setSelectedFiles(prev => [...prev, ...filesArray]);
 
             if (name === 'photos') {
                 setFormData((prev) => ({ ...prev, photos: filesArray }));
@@ -45,7 +45,7 @@ const AddPointPanel = ({ mapCoords }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true); 
+        setIsSubmitting(true);
 
         try {
             const formDataObj = new FormData();
@@ -95,7 +95,7 @@ const AddPointPanel = ({ mapCoords }) => {
             console.error('Ошибка отправки данных:', error);
             alert('Произошла ошибка при отправке данных.');
         } finally {
-            setIsSubmitting(false); 
+            setIsSubmitting(false);
         }
     };
 
@@ -110,108 +110,108 @@ const AddPointPanel = ({ mapCoords }) => {
     };
 
     return (
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <input
-                    type="number"
-                    name="latitude"
-                    placeholder="Широта"
-                    value={formData.latitude || ''}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="number"
-                    name="longitude"
-                    placeholder="Долгота"
-                    value={formData.longitude || ''}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="title"
-                    placeholder="Название"
-                    value={formData.title}
-                    onChange={handleChange}
-                    required
-                />
-                <textarea
-                    name="description"
-                    placeholder="Описание"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    name="year"
-                    placeholder="Год"
-                    value={formData.year}
-                    onChange={handleChange}
-                />
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <input
+                type="number"
+                name="latitude"
+                placeholder="Широта"
+                value={formData.latitude || ''}
+                onChange={handleChange}
+                required
+            />
+            <input
+                type="number"
+                name="longitude"
+                placeholder="Долгота"
+                value={formData.longitude || ''}
+                onChange={handleChange}
+                required
+            />
+            <input
+                type="text"
+                name="title"
+                placeholder="Название"
+                value={formData.title}
+                onChange={handleChange}
+                required
+            />
+            <textarea
+                name="description"
+                placeholder="Описание"
+                value={formData.description}
+                onChange={handleChange}
+                required
+            />
+            <input
+                type="text"
+                name="year"
+                placeholder="Год"
+                value={formData.year}
+                onChange={handleChange}
+            />
 
-                <div className="file-upload-wrapper">
-                    <label htmlFor="photos" className="file-upload-label">
-                        Загрузить фото
-                    </label>
-                    <input
-                        id="photos"
-                        type="file"
-                        name="photos"
-                        accept="image/*"
-                        multiple
-                        onChange={handleChange}
-                        className="file-upload-input"
-                    />
+            <div className="file-upload-wrapper">
+                <label htmlFor="photos" className="file-upload-label">
+                    Загрузить фото
+                </label>
+                <input
+                    id="photos"
+                    type="file"
+                    name="photos"
+                    accept="image/*"
+                    multiple
+                    onChange={handleChange}
+                    className="file-upload-input"
+                />
+            </div>
+
+            <div className="file-upload-wrapper">
+                <label htmlFor="audios" className="file-upload-label">
+                    Загрузить аудио
+                </label>
+                <input
+                    id="audios"
+                    type="file"
+                    name="audios"
+                    accept="audio/*"
+                    multiple
+                    onChange={handleChange}
+                    className="file-upload-input"
+                />
+            </div>
+
+            {selectedFiles.length > 0 && (
+                <div className={`selected-files ${selectedFiles.length ? 'visible' : ''}`}>
+                    <div style={{ fontWeight: 'bold' }}>Выбрано файлов: {selectedFiles.length}</div>
+                    <ul style={{ margin: '0.5rem 0', paddingLeft: '1rem' }}>
+                        {selectedFiles.map((file, index) => (
+                            <li key={index} style={{ fontSize: '0.9rem' }}>
+                                {file.name} ({(file.size / 1024).toFixed(1)} KB)
+                            </li>
+                        ))}
+                    </ul>
+                    <button
+                        type="button"
+                        onClick={clearSelectedFiles}
+                        style={{
+                            marginTop: '0.5rem',
+                            padding: '0.25rem 0.5rem',
+                            backgroundColor: '#dc3545',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Очистить файлы
+                    </button>
                 </div>
+            )}
 
-                <div className="file-upload-wrapper">
-                    <label htmlFor="audios" className="file-upload-label">
-                        Загрузить аудио
-                    </label>
-                    <input
-                        id="audios"
-                        type="file"
-                        name="audios"
-                        accept="audio/*"
-                        multiple
-                        onChange={handleChange}
-                        className="file-upload-input"
-                    />
-                </div>
-
-                {selectedFiles.length > 0 && (
-                    <div className={`selected-files ${selectedFiles.length ? 'visible' : ''}`}>
-                        <div style={{ fontWeight: 'bold' }}>Выбрано файлов: {selectedFiles.length}</div>
-                        <ul style={{ margin: '0.5rem 0', paddingLeft: '1rem' }}>
-                            {selectedFiles.map((file, index) => (
-                                <li key={index} style={{ fontSize: '0.9rem' }}>
-                                    {file.name} ({(file.size / 1024).toFixed(1)} KB)
-                                </li>
-                            ))}
-                        </ul>
-                        <button
-                            type="button"
-                            onClick={clearSelectedFiles}
-                            style={{
-                                marginTop: '0.5rem',
-                                padding: '0.25rem 0.5rem',
-                                backgroundColor: '#dc3545',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            Очистить файлы
-                        </button>
-                    </div>
-                )}
-
-                <button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Отправка...' : 'Добавить точку'}
-                </button>
-            </form>
+            <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Отправка...' : 'Добавить точку'}
+            </button>
+        </form>
     );
 };
 
