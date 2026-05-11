@@ -1,0 +1,106 @@
+.panel {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+.loading,
+.error {
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.retryButton {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.summary {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.value,
+.averageValue {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.averageValue {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gradesDistribution {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gradeRow {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.gradeLabel {
+    width: 100px;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.progressBarContainer {
+    flex: 1;
+    height: 12px;
+    background: #e9ecef;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    background: #ffc107;
+    transition: width 0.3s ease;
+}
+
+.gradeCount {
+    width: 80px;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
