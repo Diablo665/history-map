@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.closed-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e7e7e7 0%, #dab5ff 100%);
+    padding: 20px;
+}
+
+.closed-content {
+    text-align: center;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-container {
+    margin-bottom: 30px;
+}
+
+.lock-icon {
+    font-size: 60px;
+    color: #667eea;
+    text-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.title {
+    color: #2d3748;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.5px;
+}
+
+.description {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 30px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.redirect-link {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    margin-bottom: 30px;
+}
+
+.redirect-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.footer p {
+    color: #718096;
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+}
+
+.footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #667eea;
+    transition: width 0.3s ease;
+}
+
+.footer a:hover {
+    color: #764ba2;
+}
+
+.footer a:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .closed-content {
+        padding: 40px 20px;
+        max-width: 90%;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .closed-page {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .lock-icon {
+        font-size: 40px;
+    }
+}
