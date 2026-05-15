@@ -1,34 +1,98 @@
-#gallaryConteiner{
-    border: 1px solid rgba(128, 128, 128, 0.219);
-    border-radius: 5px;
-    box-shadow: 0px -1px 20px 5px rgba(79, 79, 79, 0.2);
-    margin-top: 5px;
+#gallaryConteiner {
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 16px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    background-color: #f8f9fa;
+}
+
+#gallaryConteiner h3 {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.imgConteiner {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px;
+    transition: all 0.3s ease;
+    background: white;
+    cursor: pointer;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 }
 
-.imgConteiner{
-    border: 1px solid rgb(207, 207, 207);
-    border-radius: 5px;
-    padding: 5px;
-    margin: 10px;
-    width: 130px;
-    height: 170px;
-    
+.imgConteiner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
 }
 
-.gallaryImg{
-    width: 125px;
-    height: 125px;
-    border-radius: 5px;
+.gallaryImg {
+    width: 100%;
+    height: 140px;
+    border-radius: 6px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.imgTitle{
-    margin: 0px;
+.imgConteiner:hover .gallaryImg {
+    transform: scale(1.05);
+}
+
+.imgTitle {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: center;
+    line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 2;  
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
+}
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    font-size: 1.25rem;
+    color: #66707a;
+}
+
+@media (max-width: 768px) {
+    #gallaryConteiner {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #gallaryConteiner {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .imgConteiner {
+        padding: 8px;
+    }
+
+    .gallaryImg {
+        height: 100px;
+    }
 }
