@@ -3,14 +3,29 @@ const FALLBACK_PHOTO_URL = "https://static.tildacdn.com/stor3632-6331-4263-b262-
 export const getIconSize = (zoom) => {
     if (zoom >= 15) return [80, 80];
     if (zoom >= 12) return [60, 60];
-    if (zoom >= 9)  return [40, 40];
-    if (zoom >= 6)  return [30, 30];
+    if (zoom >= 9) return [40, 40];
+    if (zoom >= 6) return [30, 30];
     return [20, 20];
 };
 
 export const getPhotoUrl = (photo) => {
     if (photo && photo.photo_path) {
-        return `https://bc109a6da9ed.hosting.myjino.ru${photo.photo_path}`;
+        return `https://thevoiceofthefortress.fun/${photo.photo_path}`;
     }
     return FALLBACK_PHOTO_URL;
+};
+
+export const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const mskDate = new Date(date.getTime() + 3 * 60 * 60 * 1000); // Возможно подправить, используется для получения времени по МСК
+
+    return new Intl.DateTimeFormat('ru-RU', {
+        timeZone: 'Europe/Moscow',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    }).format(mskDate);
 };

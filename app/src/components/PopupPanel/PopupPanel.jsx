@@ -7,7 +7,7 @@ import styles from './PopupPanel.module.css';
 const PopupPanel = () => {
     const dispatch = useDispatch();
     const { isOpen, pointId, data, loading, error } = useSelector(state => state.popup);
-    const API_URL = 'https://bc109a6da9ed.hosting.myjino.ru/';
+    const API_URL = 'https://thevoiceofthefortress.fun/';
 
     useEffect(() => {
 
@@ -100,10 +100,10 @@ const PopupPanel = () => {
                     <div className={styles.leftPanel}>
                         <div className={styles.photoDisplay}>
                             <img
-                                src={`https://bc109a6da9ed.hosting.myjino.ru/${currentPhoto}`}
+                                src={`https://thevoiceofthefortress.fun/${currentPhoto}`}
                                 alt={title}
                                 onError={(e) => {
-                                    e.target.src = 'https://bc109a6da9ed.hosting.myjino.ru/images/placeholder.jpg';
+                                    e.target.src = 'https://thevoiceofthefortress.fun/images/placeholder.jpg';
                                 }}
                             />
                         </div>
@@ -155,7 +155,7 @@ const PopupPanel = () => {
                                         onClick={() => setCurrentPhoto(photo)}
                                     >
                                         <img
-                                            src={`https://bc109a6da9ed.hosting.myjino.ru/${photo}`}
+                                            src={`https://thevoiceofthefortress.fun/${photo}`}
                                             alt={`Фото ${index + 1}`}
                                             onError={(e) => {
                                                 e.target.style.display = 'none';

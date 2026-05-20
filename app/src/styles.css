@@ -1,17 +1,18 @@
-*{
+* {
     font-family: 'Courier New', Courier, monospace;
 }
 
-#mainConteiner{
+#mainConteiner {
     display: flex;
 }
 
-h3{
+h3 {
     margin-left: 10px;
 }
 
-#leftPanel, #rightPanel{
-    border:none;
+#leftPanel,
+#rightPanel {
+    border: none;
 }
 
 #leftPanel {
@@ -23,7 +24,7 @@ h3{
 }
 
 #rightPanel {
-    flex: 0 1 30%; 
+    flex: 0 1 30%;
     box-sizing: border-box;
     overflow-y: auto;
     margin-left: 5px;
@@ -31,13 +32,15 @@ h3{
 
 @media (max-width: 1250px) {
 
-#mainConteiner{
-    flex-direction: column;
-}
+    #mainConteiner {
+        flex-direction: column;
+    }
 
-#leftPanel, #rightPanel{
-    width: 100%
-    
-}
+    #leftPanel,
+    #rightPanel {
+        width: 100%;
+        margin: 3px 0;
+
+    }
 
 }
