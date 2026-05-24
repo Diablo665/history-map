@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styles from './LoginForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsRegistration, closeLoginForm, setIsLogined } from '../../store/loginSlice';
+import { showNotification } from '../../utils/helper';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -55,21 +56,27 @@ const LoginForm = () => {
                     : { login: '', password: '' }
                 );
 
-                alert(isRegistration ? 'Вы зарегистрированы' : 'Вы вошли');
+                showNotification(
+                    isRegistration ? 'Вы зарегистрированы' : 'Вы вошли',
+                    'success'
+                );
 
                 if(!isRegistration){
                     localStorage.setItem('authToken', result.token);
                     localStorage.setItem('userData', JSON.stringify(result.user));
-                    window.location.reload();
+
+                    setTimeout(() => window.location.reload(), 1000)
+
+                    
                     dispatch(setIsLogined(true));
 
                 }
             } else {
-                alert(`Ошибка: ${result.error}`);
+                showNotification(`Ошибка: ${result.error}`, 'error')
             }
         } catch (error) {
             console.error('Ошибка отправки данных:', error);
-            alert('Произошла ошибка при отправке данных.');
+            showNotification('Произошла ошибка при отправке данных.', 'error')
         }
     };
 

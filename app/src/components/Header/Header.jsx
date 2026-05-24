@@ -4,6 +4,7 @@ import { IoIosMail } from "react-icons/io";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { openLoginForm, setIsLogined } from "../../store/loginSlice";
 import { useDispatch, useSelector} from "react-redux";
+import { showNotification } from "../../utils/helper";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -16,9 +17,11 @@ const Header = () => {
     const logout = () => {
          if (window.confirm('Вы уверены, что хотите выйти?')) { 
             dispatch(setIsLogined(false));
+            showNotification("Вы вышли", 'success');
+            setTimeout(() => window.location.reload(), 1000);
             localStorage.removeItem('authToken');
             localStorage.removeItem('userData');
-            window.location.reload();
+            
          }
     }
 
