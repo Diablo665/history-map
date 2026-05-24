@@ -47,7 +47,7 @@ h3 {
 }
 
 .notification.error {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #fd6c6c 0%, #f84159 100%);
   color: white;
 }
 
