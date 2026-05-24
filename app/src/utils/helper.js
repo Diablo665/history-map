@@ -29,3 +29,18 @@ export const formatDate = (dateString) => {
         minute: '2-digit'
     }).format(mskDate);
 };
+
+export const showNotification = (message, type = 'success') => {
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    if (notification.parentNode) {
+      notification.parentNode.removeChild(notification);
+    }
+  }, 3000);
+};
+
