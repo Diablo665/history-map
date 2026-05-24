@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './CommentPanel.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { formatDate } from '../../utils/helper';
+import { formatDate, showNotification } from '../../utils/helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { openAdminPanel, setCommentId } from '../../store/adminPopupSlice';
 
@@ -40,11 +40,11 @@ const CommentPanel = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isLogined) {
-            alert("Для того чтобы оставить комментарий, нужно зарегестрироваться")
+            showNotification("Для того чтобы оставить комментарий, нужно зарегестрироваться", 'error');
             return
         }
         if (!comment.trim()) {
-            alert('Пожалуйста, заполните комментарий');
+            showNotification('Пожалуйста, заполните комментарий', 'error');
             return;
         }
 
@@ -76,11 +76,11 @@ const CommentPanel = () => {
                 setComments([result, ...comments]);
                 setName('')
             } else {
-                alert(`Ошибка: ${result.error}`);
+                showNotification(`Ошибка: ${result.error}`, 'error');
             }
         } catch (error) {
             console.error('Ошибка отправки данных:', error);
-            alert('Произошла ошибка при отправке данных.');
+            showNotification('Произошла ошибка при отправке данных.', 'error');
         } finally {
             setIsSubmitting(false);
         }
@@ -128,10 +128,10 @@ const CommentPanel = () => {
                     prevComments.filter(comment => comment.id !== commentId)
                 );
 
-                alert('Комментарий успешно удалён');
+                showNotification('Комментарий успешно удалён');
             } catch (error) {
                 console.error('Ошибка при удалении комментария:', error);
-                alert('Не удалось удалить комментарий. Пожалуйста, попробуйте ещё раз.');
+                showNotification('Не удалось удалить комментарий. Пожалуйста, попробуйте ещё раз.', 'error');
             }
         }
     };
