@@ -1,32 +1,29 @@
 .headerContainer {
     font-weight: 600;
-    border-radius: 12px;
     margin-bottom: 10px;
     font-size: 26px;
-    padding: 16px 24px;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
-.title-container {
+.titleContainer {
     display: flex;
-    gap: 8px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
 }
 
 .title1 {
     color: #e74c3c;
-    padding: 2px 0;
-    background-color: rgba(231, 76, 60, 0.1);
-    border-radius: 4px;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 2px;
 }
 
 .title2 {
     color: #333;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 26px;
 }
 
@@ -36,7 +33,10 @@
     color: #555;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 4px 12px;
 }
 
 .contact a {
@@ -46,40 +46,48 @@
     align-items: center;
     gap: 8px;
     transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    align-self: center;
 }
 
-.contact a:hover {
-    color: #e74c3c;
-    transform: translateY(-1px);
-}
-
-.contact a:hover .mailIcon {
-    transform: scale(1.1);
-    color: #e74c3c;
-}
-
-.mailIcon {
-    font-size: 20px;
-    transition: transform 0.3s ease, color 0.3s ease;
-    color: inherit;
-}
-
-.entry{
+.entry {
     display: flex;
     align-items: center;
     gap: 8px;
     transition: color 0.3s ease, transform 0.3s ease;
-    margin-left: 5px;
+    cursor: pointer;
+    align-self: center;
+}
+.contact a:hover {
+    color: #e74c3c;
+    transform: translateY(-1px);
+
+    .mailIcon {
+        color: #e74c3c;
+    }
 }
 
-.entry:hover{
+.mailIcon {
+    font-size: 20px;
+    transition: color 0.3s ease;
+    color: inherit;
+}
+
+.entry:hover {
     color: #e74c3c;
     transform: translateY(-1px);
 }
 
-.entryIcon{
+.entryIcon {
     font-size: 22px;
+    transition: transform 0.3s ease;
 }
+
+.entry:hover .entryIcon,
+.contact a:hover .mailIcon {
+    transform: scale(1.1) rotate(3deg);
+}
+
 @media (max-width: 768px) {
     .headerContainer {
         font-size: 22px;

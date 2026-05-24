@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './CommentPanel.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { formatDate } from '../../utils/helper';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { openAdminPanel, setCommentId } from '../../store/adminPopupSlice';
 
 const CommentPanel = () => {
     const [comment, setComment] = useState('');
@@ -13,6 +14,8 @@ const CommentPanel = () => {
     const [loading, setLoading] = useState(true)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const API_URL = process.env.REACT_APP_COMMENT_API;
+
+    const dispatch = useDispatch();
     const { userId, username, isLogined, role } = useSelector((state) => state.login)
 
     useEffect(() => {
@@ -99,6 +102,13 @@ const CommentPanel = () => {
     };
 
     const handleDeleteComment = async (commentId) => {
+        
+        if (role === 'admin'){
+            dispatch(openAdminPanel())
+            dispatch(setCommentId(commentId))
+            return
+        }
+
         if (window.confirm('Вы уверены, что хотите удалить этот комментарий?')) {
             try {
                 console.log('Удаляем комментарий:', commentId);
@@ -227,7 +237,7 @@ const CommentPanel = () => {
                             </div>
                             <div className={styles.commentContent}>
                                 <div className={styles.commentHeader}>
-                                    <span className={styles.commentName}>{comment.username}</span>
+                                    <span className={styles.commentName}>{comment.isDeleted ? 'Пользователь' : comment.username}</span>
                                     <span className={styles.commentDate}>{formatDate(comment.datetime)}</span>
                                 </div>
 
@@ -246,7 +256,20 @@ const CommentPanel = () => {
                                     </div>
                                 )}
 
-                                <p className={styles.commentText}>{comment.comment}</p>
+                                <p className={
+                                    comment.isDeleted
+                                        ? `${styles.commentText} ${styles.deletedComment}`
+                                        : styles.commentText
+                                }>{comment.isDeleted ? (
+                                        <>
+                                            Комментарий был удалён администратором.
+                                                <span className={styles.adminComment}>
+                                                    <br /><strong>Комментарий администратора:</strong> {comment.comment}
+                                                </span>
+                                        </>
+                                    ) : (
+                                        comment.comment
+                                    )}</p>
 
                                 {comment.userid === userId || role === 'admin' ? <div className={styles.commentActions}>
                                     <button
