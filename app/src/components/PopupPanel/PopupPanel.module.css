@@ -12,7 +12,7 @@
 }
 
 .panel {
-    background: white;
+    background: var(--bg-main);
     width: 90%;
     max-width: 1200px;
     height: 80vh;
@@ -64,7 +64,7 @@
 .photoDisplay {
     min-height: 300px;
     max-height: 400px;
-    background: #f0f0f0;
+    background: var(--bg-panels);
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -87,6 +87,7 @@
 .infoPanel {
     flex: 1;
     overflow-y: auto;
+    color: var(--text)
 }
 
 .infoRow {
@@ -99,14 +100,14 @@
 .label {
     font-weight: bold;
     min-width: 100px;
-    color: #555;
+    color: var(--text);
 }
 
 .rightPanel {
     width: 250px;
     padding: 20px;
-    background: #f8f8f8;
-    border-left: 1px solid #ddd;
+    background: var(--bg-panels);
+    border-left: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
 }
@@ -151,16 +152,21 @@
 .audioItem {
     margin-bottom: 10px;
     padding: 8px;
-    background: #f9f9f9;
+    background: var(--bg-panels);
     border-radius: 4px;
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color);
 }
 
 .audioLabel {
     font-size: 12px;
-    color: #666;
+    color: var(--text);
     margin-top: 5px;
     text-align: center;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: var(--bg-panels);
+  border:none;
 }
 
 .placeholderText {
@@ -169,8 +175,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #e0e0e0;
-    color: #666;
+    background: var(--bg-panels);
+    color: var(--text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,7 +186,7 @@
 
 .noPhotos {
     text-align: center;
-    color: #888;
+    color: var(--text);
     font-style: italic;
     padding: 20px;
 }
@@ -188,7 +194,7 @@
 .loading {
     text-align: center;
     padding: 40px;
-    color: #666;
+    color: var(--text);
 }
 
 .error {

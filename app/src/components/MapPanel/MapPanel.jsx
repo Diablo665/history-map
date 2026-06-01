@@ -79,6 +79,7 @@ const MapPanel = () => {
                                 onClick={() => openPopupOnClick(point.id)}
                             />
                         ))}
+
                 </Map>
             </YMaps>
         </div>

@@ -7,26 +7,26 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    background-color: #f8f9fa;
+    background: var(--bg-main);
 }
 
 #gallaryConteiner h3 {
     grid-column: 1 / -1;
     margin: 0;
-    color: #2c3e50;
+    color: var(--text);
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
     padding-bottom: 16px;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .imgConteiner {
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 12px;
     transition: all 0.3s ease;
-    background: white;
+    background: var(--bg-panels);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -54,7 +54,7 @@
 .imgTitle {
     margin-top: 12px;
     font-size: 0.9rem;
-    color: #333;
+    color: var(--text);
     text-align: center;
     line-height: 1.4;
     display: -webkit-box;
@@ -70,7 +70,7 @@
     text-align: center;
     padding: 40px;
     font-size: 1.25rem;
-    color: #66707a;
+    color: var(--text);
 }
 
 @media (max-width: 768px) {

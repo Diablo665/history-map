@@ -17,7 +17,7 @@
     padding: 32px;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    background-color: white;
+    background: var(--bg-main);
     transition: transform 0.5s ease;
 }
 
@@ -25,7 +25,7 @@
     text-align: center;
     font-size: 24px;
     margin-bottom: 32px;
-    color: #333;
+    color: var(--text);
     font-weight: 600;
 }
 
@@ -42,17 +42,19 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #495057;
+    color: var(--text);
     font-size: 14px;
     text-transform: uppercase;
 }
 
 .inputBlock input {
     padding: 12px 16px;
-    border: 1px solid #adadad;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-size: 16px;
     width: 100%;
+    color: var(--text);
+    background: var(--input-bg);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box;
 }
