@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: var(--bg-main);
 }
 
 .titleContainer {
@@ -16,13 +16,13 @@
 }
 
 .title1 {
-    color: #e74c3c;
+    color: var(--title1);
     border-bottom: 2px solid #e74c3c;
     padding-bottom: 2px;
 }
 
 .title2 {
-    color: #333;
+    color: var(--title2);
     font-weight: 600;
     font-size: 26px;
 }
@@ -30,7 +30,7 @@
 .contact {
     font-size: 18px;
     font-weight: 400;
-    color: #555;
+    color: var(--text);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -83,8 +83,22 @@
     transition: transform 0.3s ease;
 }
 
+.setTheme{
+    cursor: pointer;
+}
+
+.themeIcon {
+    font-size: 28px;
+    transition: transform 0.3s ease;
+}
+
+.themeIcon:hover{
+    transform: scale(1.1);
+}
+
 .entry:hover .entryIcon,
-.contact a:hover .mailIcon {
+.contact a:hover .mailIcon
+.setTheme:hover .themeIcon {
     transform: scale(1.1) rotate(3deg);
 }
 

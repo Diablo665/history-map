@@ -2,16 +2,19 @@ import React from "react";
 import styles from './Header.module.css';
 import { IoIosMail } from "react-icons/io";
 import { CiLogin, CiLogout } from "react-icons/ci";
+import { FiSunrise, FiSunset } from "react-icons/fi";
 import { openLoginForm, setIsLogined } from "../../store/loginSlice";
 import { useDispatch, useSelector} from "react-redux";
+import { useState } from "react";
 import { showNotification } from "../../utils/helper";
 
 const Header = () => {
     const dispatch = useDispatch();
     const {isLogined} = useSelector((state) => state.login);
-
+    const [theme, updateTheme] = useState(localStorage.getItem('theme') || 'light');
+    document.querySelector("HTML").setAttribute("data-theme", theme);
     const login = () =>{
-        dispatch(openLoginForm())
+        dispatch(openLoginForm());
     }
 
     const logout = () => {
@@ -25,6 +28,22 @@ const Header = () => {
          }
     }
 
+    const setTheme = () => {
+        const theme = localStorage.getItem('theme') || 'light';
+
+        switch (theme) {
+            case 'light':
+                localStorage.setItem('theme', 'dark');
+                updateTheme('dark');
+                break;
+            case 'dark':
+                localStorage.setItem('theme', 'light')
+                updateTheme('light')
+                break;
+        };
+
+    }
+
     return (
         <div className={styles.headerContainer}>
             <div className={styles.titleContainer}>
@@ -32,6 +51,12 @@ const Header = () => {
                 <span className={styles.title2}>Крепости</span>
             </div>
             <div className={styles.contact}>
+                {theme === 'light' ? <span className={styles.setTheme} onClick={setTheme} title="Темная тема"> 
+                    <FiSunset className={styles.themeIcon}/>
+                </span> : <span className={styles.setTheme} onClick={setTheme} title="Светлая тема"> 
+                    <FiSunrise className={styles.themeIcon}/>
+                </span>}
+
                 <a href="mailto:support@thevoiceofthefortress.fun">
                     Связаться с нами
                     <IoIosMail className={styles.mailIcon} />
