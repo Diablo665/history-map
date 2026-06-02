@@ -1,0 +1,132 @@
+.headerContainer {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 26px;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-main);
+}
+
+.titleContainer {
+    display: flex;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+}
+
+.title1 {
+    color: var(--title1);
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 2px;
+}
+
+.title2 {
+    color: var(--title2);
+    font-weight: 600;
+    font-size: 26px;
+}
+
+.contact {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 4px 12px;
+}
+
+.contact a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    align-self: center;
+}
+
+.entry {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    align-self: center;
+}
+.contact a:hover {
+    color: #e74c3c;
+    transform: translateY(-1px);
+
+    .mailIcon {
+        color: #e74c3c;
+    }
+}
+
+.mailIcon {
+    font-size: 20px;
+    transition: color 0.3s ease;
+    color: inherit;
+}
+
+.entry:hover {
+    color: #e74c3c;
+    transform: translateY(-1px);
+}
+
+.entryIcon {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+.setTheme{
+    cursor: pointer;
+}
+
+.themeIcon {
+    font-size: 28px;
+    transition: transform 0.3s ease;
+}
+
+.themeIcon:hover{
+    transform: scale(1.1);
+}
+
+.entry:hover .entryIcon,
+.contact a:hover .mailIcon
+.setTheme:hover .themeIcon {
+    transform: scale(1.1) rotate(3deg);
+}
+
+@media (max-width: 768px) {
+    .headerContainer {
+        font-size: 22px;
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .title-container {
+        margin-bottom: 8px;
+    }
+
+    .contact {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .title1,
+    .title2 {
+        font-size: 20px;
+    }
+
+    .contact {
+        font-size: 16px;
+    }
+}
