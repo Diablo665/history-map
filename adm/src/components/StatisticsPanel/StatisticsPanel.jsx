@@ -120,19 +120,13 @@ const StatisticsPanel = () => {
                 </div>
             </div>
 
-            <div className={styles.gradesDistribution}>
+            <div className={styles.cardGrid}>
                 {[5, 4, 3, 2, 1, 0].map(grade => (
-                    <div key={grade} className={styles.gradeRow}>
-                        <div className={styles.gradeLabel}>
+                    <div key={grade} className={styles.cardItem} data-grade={grade}>
+                        <div className={styles.cardLabel}>
                             {getStarText(grade)}
                         </div>
-                        <div className={styles.progressBarContainer}>
-                            <div
-                                className={styles.progressBar}
-                                style={{ width: `${statistics.percentages[grade]}%` }}
-                            />
-                        </div>
-                        <div className={styles.gradeCount}>
+                        <div className={styles.cardValue}>
                             {statistics.counts[grade]} ({statistics.percentages[grade]}%)
                         </div>
                     </div>
