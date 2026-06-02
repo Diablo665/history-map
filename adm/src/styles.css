@@ -1,7 +1,46 @@
+:root {
+    --grade-5-bg: #d1ecf1;
+    --grade-4-bg: #fff3cd;
+    --grade-3-bg: #fff3cd;
+    --grade-2-bg: #ffe6e6;
+    --grade-1-bg: #ffe6e6;
+    --grade-0-bg: #fff3cd;
+    --bg-main: #f8f9fa;
+    --bg-panels: #ffffff;
+    --text: #2b3a4a;
+    --title1: #e74c3c;
+    --title2: #333333;
+    --border-color: #80808038;
+    --input-bg: #ffffff;
+}
+
+[data-theme='dark'] {
+    --grade-5-bg: #d1ecf1c4;
+    --grade-4-bg: #fff3cdc4;
+    --grade-3-bg: #fff3cdc4;
+    --grade-2-bg: #ffe6e6c4;
+    --grade-1-bg: #ffe6e6c4;
+    --grade-0-bg: #fff3cdc4;
+    --bg-main: linear-gradient(90deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+    --bg-panels: #3f455fe6;
+    --text: #ecf0f1;
+    --title1: #ff1900;
+    --title2: #b7b7b7;
+    --border-color: #80808038;
+    --input-bg: #5c5c5ca8;
+}
+
+:root,
+body {
+    transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background: var(--bg-main);
+
+}
+
 #mainContainer {
     display: flex;
     gap: 20px;
-    height: calc(100vh - 100px);
+    background: var(--bg-main);
 }
 
 #mapPanel {
@@ -12,8 +51,8 @@
 
 #addPointInfoPanel {
     flex: 1;
-    border: 1px solid #d1d5da;
-    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -23,6 +62,10 @@
 @media (max-width: 1024px) {
     #mainContainer {
         flex-direction: column;
+    }
+
+    #addPointInfoPanel{
+        padding: 1rem 0;
     }
 
     #mapPanel,

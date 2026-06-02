@@ -3,6 +3,7 @@ import MapPreview from "./components/MapPreview/MapPreview";
 import AddPointPanel from "./components/AddPointPanel/AddPointPanel";
 import LoginForm from "./components/LoginForm/LoginForm";
 import StatisticsPanel from "./components/StatisticsPanel/StatisticsPanel";
+import Header from "./components/Header/Header"
 import "./styles.css";
 
 const App = () => {
@@ -73,15 +74,18 @@ const App = () => {
     }
 
     return (
+        <>
+        <Header />
         <div id="mainContainer">
             <div id="mapPanel">
                 <MapPreview onPointSelect={handleMapPointSelect} />
-                <StatisticsPanel />
             </div>
             <div id="addPointInfoPanel">
                 <AddPointPanel mapCoords={mapCoords} />
             </div>
         </div>
+        <StatisticsPanel />
+        </>
     );
 };
 
