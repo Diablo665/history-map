@@ -3,7 +3,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     padding: 16px;
-    background: var(--bg-main);
+    background: #ffffff00;
     overflow-y: auto;
     height: calc(100% - 32px);
     scrollbar-width: none; 
@@ -20,7 +20,6 @@ h3 {
 
 .eventBlock {
     padding: 12px;
-    background: var(--bg-panels);
     border-radius: 8px;
     margin-bottom: 10px;
     display: flex;
@@ -36,7 +35,7 @@ h3 {
 
 #noEventBlock {
     text-align: center;
-    color: #7f8c8d;
+    color: var(--text);
     font-size: 1.2rem;
     padding: 32px 0;
 }

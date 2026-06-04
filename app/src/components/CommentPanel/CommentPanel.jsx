@@ -4,39 +4,27 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import { formatDate, showNotification } from '../../utils/helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { openAdminPanel, setCommentId } from '../../store/adminPopupSlice';
+import { fetchComments, removeComment, addComment } from '../../store/commentsSlice';
 
 const CommentPanel = () => {
+    
     const [comment, setComment] = useState('');
     const [name, setName] = useState('');
     const [rating, setRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(null);
-    const [comments, setComments] = useState([])
-    const [loading, setLoading] = useState(true)
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const API_URL = process.env.REACT_APP_COMMENT_API;
 
+    const API_URL = process.env.REACT_APP_COMMENT_API;
     const dispatch = useDispatch();
-    const { userId, username, isLogined, role } = useSelector((state) => state.login)
+    const { userId, username, isLogined, role } = useSelector((state) => state.login);
+    const {comments, isLoading, error} = useSelector((state) => state.comments)
 
     useEffect(() => {
 
-        fetch(API_URL)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(result => {
-                setComments(result);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Ошибка загрузки комментариев:', error);
-                setLoading(false);
-            });
-    }, [API_URL])
+        dispatch(fetchComments(API_URL))
 
+    }, [API_URL])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isLogined) {
@@ -71,9 +59,9 @@ const CommentPanel = () => {
             const result = await response.json();
 
             if (response.ok) {
+                dispatch(addComment(result))
                 setComment('');
                 setRating(0);
-                setComments([result, ...comments]);
                 setName('')
             } else {
                 showNotification(`Ошибка: ${result.error}`, 'error');
@@ -124,10 +112,7 @@ const CommentPanel = () => {
                     throw new Error(`Ошибка при удалении: ${response.status}`);
                 }
 
-                setComments(prevComments =>
-                    prevComments.filter(comment => comment.id !== commentId)
-                );
-
+                dispatch(removeComment(commentId))
                 showNotification('Комментарий успешно удалён');
             } catch (error) {
                 console.error('Ошибка при удалении комментария:', error);
@@ -135,6 +120,18 @@ const CommentPanel = () => {
             }
         }
     };
+
+    if(isLoading){
+         return (
+            <div> Загрузка комментаиев </div>
+        )
+    }
+
+    if(error){
+        return (
+            <div> Ошибка загрузки </div>
+        )
+    }
 
     return (
         <div className={styles.commentPanel}>

@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    background: var(--bg-main);
+    background: #007bff00;
 }
 
 #gallaryConteiner h3 {
@@ -26,7 +26,6 @@
     border-radius: 8px;
     padding: 12px;
     transition: all 0.3s ease;
-    background: var(--bg-panels);
     cursor: pointer;
     display: flex;
     flex-direction: column;
