@@ -4,6 +4,8 @@ import eventsSlice from "./eventsSlice";
 import gallarySlice from "./gallarySlice";
 import popupSlice from "./popupSlice";
 import loginSlice from "./loginSlice";
+import adminPopupSlice from './adminPopupSlice'
+import commentsSlice from "./commentsSlice";
 
 const store = configureStore({
     reducer: {
@@ -11,7 +13,9 @@ const store = configureStore({
         events: eventsSlice,
         gallary: gallarySlice,
         popup: popupSlice,
-        login: loginSlice
+        login: loginSlice,
+        admin: adminPopupSlice,
+        comments: commentsSlice
     }
 });
 
