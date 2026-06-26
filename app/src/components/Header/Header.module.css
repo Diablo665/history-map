@@ -75,7 +75,7 @@
 }
 
 .FAQ:hover {
-    color: #e4ee56;
+    color: #eec556;
     transform: translateY(-1px);
 }
 
@@ -109,8 +109,8 @@
 }
 
 .entry:hover .entryIcon,
-.contact a:hover .mailIcon
-.setTheme:hover .themeIcon
+.contact a:hover .mailIcon,
+.setTheme:hover .themeIcon,
 .FAQ:hover .FAQIcon
 {
     transform: scale(1.1) rotate(3deg);
