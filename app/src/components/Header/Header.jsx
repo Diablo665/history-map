@@ -1,15 +1,17 @@
 import React from "react";
 import styles from './Header.module.css';
 import { IoIosMail } from "react-icons/io";
-import { CiLogin, CiLogout } from "react-icons/ci";
+import { CiLogin, CiLogout, CiCircleQuestion, CiHome } from "react-icons/ci";
 import { FiSunrise, FiSunset } from "react-icons/fi";
 import { openLoginForm, setIsLogined } from "../../store/loginSlice";
 import { useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
 import { showNotification } from "../../utils/helper";
+import { useNavigate } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({from}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {isLogined} = useSelector((state) => state.login);
     const [theme, updateTheme] = useState(localStorage.getItem('theme') || 'light');
     document.querySelector("HTML").setAttribute("data-theme", theme);
@@ -44,6 +46,11 @@ const Header = () => {
 
     }
 
+    const goToNewPage = () => {
+        const page = from === "faq" ? '/' : 'faq'
+        navigate(page)
+    }
+
     return (
         <div className={styles.headerContainer}>
             <div className={styles.titleContainer}>
@@ -56,6 +63,12 @@ const Header = () => {
                 </span> : <span className={styles.setTheme} onClick={setTheme} title="Светлая тема"> 
                     <FiSunrise className={styles.themeIcon}/>
                 </span>}
+
+                {from === "faq" ? <span className={styles.FAQ} onClick={goToNewPage}> 
+                    Вернуться на сайт <CiHome className={styles.FAQIcon}/>
+                </span> : <span className={styles.FAQ} onClick={goToNewPage}> 
+                    Частые вопросы <CiCircleQuestion className={styles.FAQIcon}/>
+                </span> }
 
                 <a href="mailto:support@thevoiceofthefortress.fun">
                     Связаться с нами

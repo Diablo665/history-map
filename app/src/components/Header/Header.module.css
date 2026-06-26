@@ -67,8 +67,20 @@
     }
 }
 
-.mailIcon {
-    font-size: 20px;
+.FAQ{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.FAQ:hover {
+    color: #e4ee56;
+    transform: translateY(-1px);
+}
+
+.mailIcon, .FAQIcon {
+    font-size: 22px;
     transition: color 0.3s ease;
     color: inherit;
 }
@@ -98,7 +110,9 @@
 
 .entry:hover .entryIcon,
 .contact a:hover .mailIcon
-.setTheme:hover .themeIcon {
+.setTheme:hover .themeIcon
+.FAQ:hover .FAQIcon
+{
     transform: scale(1.1) rotate(3deg);
 }
 
