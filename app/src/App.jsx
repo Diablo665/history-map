@@ -1,15 +1,9 @@
-import React from 'react';
-import MapPanel from './components/MapPanel/MapPanel';
-import EventPanel from './components/EventPanel/EventPanel';
-import Gallary from './components/Gallary/Gallary';
-import CommentPanel from './components/CommentPanel/CommentPanel';
-import AdminPanel from './components/AdminPanel/AdminPanel';
-import PopupPanel from './components/PopupPanel/PopupPanel';
-import Header from './components/Header/Header';
-import LoginForm from './components/LoginForm/LoginForm';
-import { useState, useEffect } from 'react';
+import React, { useEffect }  from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsLogined, setUserDate } from './store/loginSlice';
+import { Routes, Route } from 'react-router-dom'
+import MainPage from './pages/MainPage';
+import FAQPage from './pages/FAQPage';
 
 import "./styles.css"
 
@@ -57,22 +51,12 @@ function App() {
     }, [VERIFY_API]);
 
     return (
-        <>
-            <Header />
-            <div id='mainConteiner'>
-                <div id="leftPanel"> 
-                    <MapPanel />
-                    <Gallary />
-                </div>
-                <div id="rightPanel"> 
-                    <EventPanel />
-                </div>
-                <PopupPanel />
-                <AdminPanel />
-                <LoginForm />
-            </div>
-            <CommentPanel />
-        </>
+            <Routes>
+                <Route path='/' element={<MainPage />} />  
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="*" element={<MainPage />} />
+            </Routes>
+
     );
 }
 
