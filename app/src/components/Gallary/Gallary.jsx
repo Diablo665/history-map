@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import styles from "./Gallary.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setPhoto, setLoading } from "../../store/gallarySlice";
+import { useNavigate } from "react-router-dom";
 import { getPhotoUrl } from "../../utils/helper";
-import { openPopup } from "../../store/popupSlice";
 
 const Gallary = () => {
     const API_URL = 'https://thevoiceofthefortress.fun/';
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { photo, loading } = useSelector((state) => state.gallary);
 
     useEffect(() => {
@@ -35,8 +36,8 @@ const Gallary = () => {
         )
     }
 
-    const openPopupOnClick = (pointId) => {
-        dispatch(openPopup(pointId));
+    const viewPoint = (pointId) => {
+        navigate(`/point/${pointId}`);
     };
 
     return (
@@ -47,7 +48,7 @@ const Gallary = () => {
                     <div
                         key={photoItem.id}
                         className={styles.imgConteiner}
-                        onClick={() => openPopupOnClick(photoItem.id)}
+                        onClick={() => viewPoint(photoItem.id)}
                     >
                         <img
                             src={getPhotoUrl(photoItem)}

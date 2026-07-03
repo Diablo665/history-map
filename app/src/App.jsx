@@ -4,6 +4,7 @@ import { setIsLogined, setUserDate } from './store/loginSlice';
 import { Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage';
 import FAQPage from './pages/FAQPage';
+import PointPage from './pages/PointPage';
 
 import "./styles.css"
 
@@ -54,6 +55,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<MainPage />} />  
                 <Route path="/faq" element={<FAQPage />} />
+                <Route path="point/:id" element={<PointPage />} />
                 <Route path="*" element={<MainPage />} />
             </Routes>
 

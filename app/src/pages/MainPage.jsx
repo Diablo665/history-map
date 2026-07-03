@@ -5,7 +5,6 @@ import CommentPanel from '../components/CommentPanel/CommentPanel';
 import Header from '../components/Header/Header';
 import LoginForm from '../components/LoginForm/LoginForm';
 import AdminPanel from '../components/AdminPanel/AdminPanel';
-import PopupPanel from '../components/PopupPanel/PopupPanel';
 
 const MainPage = () => {
     return (
@@ -19,7 +18,6 @@ const MainPage = () => {
                 <div id="rightPanel">
                     <EventPanel />
                 </div>
-                <PopupPanel />
                 <AdminPanel />
                 <LoginForm />
             </div>
