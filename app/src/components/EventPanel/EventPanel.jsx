@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import styles from "./EventPanel.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setLastEvents, setLoading } from "../../store/eventsSlice";
+import { useNavigate } from "react-router-dom";
 import { getPhotoUrl } from "../../utils/helper";
-import { openPopup } from "../../store/popupSlice";
 
 const EventPanel = () => {
     const API_URL = 'https://thevoiceofthefortress.fun/';
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { lastEvents, loading } = useSelector((state) => state.events)
 
     useEffect(() => {
@@ -35,8 +36,8 @@ const EventPanel = () => {
         )
     }
 
-    const openPopupOnClick = (pointId) => {
-        dispatch(openPopup(pointId));
+    const viewPoint = (pointId) => {
+        navigate(`/point/${pointId}`);
     };
 
     return (
@@ -47,7 +48,7 @@ const EventPanel = () => {
                 :
 
                 lastEvents.map(event => (
-                    <div key={event.id} className={styles.eventBlock} onClick={() => openPopupOnClick(event.id)}>
+                    <div key={event.id} className={styles.eventBlock} onClick={() => viewPoint(event.id)}>
                         <img src={getPhotoUrl(event)} className={styles.eventImg} alt="Картинка" />
                         <div className={styles.eventInfo}>
                             <span className={styles.eventTitle}> {event.title} </span>

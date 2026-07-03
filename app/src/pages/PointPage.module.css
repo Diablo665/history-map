@@ -1,0 +1,303 @@
+.pageContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.backLink {
+    display: inline-block;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+.title {
+    margin: 0 0 10px 0;
+    color: var(--title1);
+}
+
+.yearsBadge {
+    background: var(--bg-main);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .contentWrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mainPhotoWrapper {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.mainPhoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.mainPhoto:hover {
+    transform: scale(1.02);
+}
+
+.noPhotoPlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    background: var(--bg-main);
+}
+
+.galleryThumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.thumbItem {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.thumbItem.active {
+    border-color: var(--border-color);
+}
+
+.thumbImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumbPlaceholder {
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metaInfo {
+    background: var(--bg-panels);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.label {
+    color: var(--title1);
+    font-weight: 600;
+}
+.info{
+    color: var(--text)
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h2,
+h3 {
+    color: var(--text);
+    border-bottom: 2px solid var();
+    padding-bottom: 8px;
+    margin-top: 0;
+}
+
+.description p {
+    line-height: 1.6;
+    color: var(--text);
+    text-align: justify;
+}
+
+.audioSection {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--bg-panels);
+}
+
+.audioItem {
+    margin-bottom: 15px;
+}
+
+.audioPlayer {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.audioLabel {
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+
+.modalImage {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.closeModalBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.closeModalBtn:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.navBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--text);
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s, transform 0.2s;
+    user-select: none;
+}
+
+.navBtn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.navBtn[aria-label="Предыдущее фото"] {
+    left: 24px;
+}
+
+.navBtn[aria-label="Следующее фото"] {
+    right: 24px;
+}
+
+.counter {
+    position: absolute;
+    bottom: 40px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 10002;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background: var(--bg-panels);
+    color: var(--text);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.loading,
+.error {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem;
+}
+
+.error {
+    color: #d9534f;
+    background: #fdf7f7;
+    border: 1px solid #f8d7da;
+    border-radius: 4px;
+}

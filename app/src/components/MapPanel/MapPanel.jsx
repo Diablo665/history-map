@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPoints, setLoading } from "../../store/mapSlice";
-import { openPopup } from "../../store/popupSlice";
+import { useNavigate } from "react-router-dom";
 import styles from "./MapPanel.module.css";
 import { getIconSize, getPhotoUrl } from "../../utils/helper";
 
@@ -16,6 +16,7 @@ const MapPanel = () => {
     const API_URL = "https://thevoiceofthefortress.fun/";
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { points, loading } = useSelector((state) => state.map);
 
     useEffect(() => {
@@ -118,7 +119,7 @@ const MapPanel = () => {
                 });
 
                 placemark.events.add('click', () => {
-                    dispatch(openPopup(point.id));
+                    navigate(`/point/${point.id}`);
                 });
 
                 map.geoObjects.add(placemark);
