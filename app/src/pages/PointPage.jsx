@@ -106,7 +106,7 @@ const PointPage = () => {
                 return;
             } catch (err) {
                 if (err.name !== 'AbortError') {
-                    console.error('Ошибка Web Share:', err);
+                    console.error('Ошибка', err);
                 }
             }
         }
