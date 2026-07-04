@@ -139,7 +139,8 @@
     color: var(--title1);
     font-weight: 600;
 }
-.info{
+
+.info {
     color: var(--text)
 }
 
@@ -275,6 +276,46 @@ h3 {
     background: var(--bg-panels);
     color: var(--text);
 }
+
+.shareRow {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.shareBtn {
+    background-color: #0263cac7;
+    color: var(--text);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.shareBtn:hover {
+    background-color: #0056b3;
+}
+
+.shareBtn:active {
+    transform: scale(0.98);
+}
+
+.shareSuccess {
+    font-size: 0.85rem;
+    color: #28a745;
+    margin-left: 4px;
+    opacity: 0;
+    transform: translateY(-4px);
+    animation: popIn 0.3s forwards;
+}
+
 
 @keyframes fadeIn {
     from {
