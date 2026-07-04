@@ -9,7 +9,7 @@ const PointPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-
+    const [isShareSuccess, setIsShareSuccess] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
@@ -93,6 +93,37 @@ const PointPage = () => {
         if (newIndex < allPhotos.length) setCurrentPhotoIndex(newIndex);
     };
 
+    const share = async () => {
+        const shareUrl = `${API_URL}/point/${id}`;
+
+        if (navigator.share && window.isSecureContext) {
+            try {
+                await navigator.share({
+                    title: point.title,
+                    text: 'Посмотри эту точку:',
+                    url: shareUrl,
+                });
+                return;
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Ошибка Web Share:', err);
+                }
+            }
+        }
+
+        try {
+            console.log('Скопировали')
+            await navigator.clipboard.writeText(shareUrl);
+            setIsShareSuccess(true);
+            console.log('isShareSuccess установлен в true');
+            setTimeout(() => setIsShareSuccess(false), 3000);
+        } catch (err) {
+            console.error('Не удалось скопировать ссылку:', err);
+            alert('Не удалось скопировать ссылку. Попробуйте вручную: ' + shareUrl);
+        }
+    };
+
+
     return (
         <main className={styles.pageContainer}>
             <header className={styles.header}>
@@ -154,6 +185,21 @@ const PointPage = () => {
                             <span className={styles.label}>Координаты:</span>
                             <span className={styles.info}>{latitude}, {longitude}</span>
                         </div>
+                        <div className={styles.shareRow}>
+                            <button
+                                type="button"
+                                className={styles.shareBtn}
+                                onClick={share}
+                                aria-label="Поделиться точкой"
+                            >
+                                📋 Поделиться точкой
+                            </button>
+
+                            {isShareSuccess && (
+                                <span className={styles.shareSuccess}>Ссылка скопирована!</span>
+                            )}
+                        </div>
+
                     </div>
                 </div>
 
