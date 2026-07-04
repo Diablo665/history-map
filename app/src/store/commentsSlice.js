@@ -19,6 +19,12 @@ const commentsSlice = createSlice({
         comments: [],
         isLoading: false,
         error: null,
+        filters: {
+            onlyMyComments: false,
+            date: null,
+            lastXdays: null,
+            rating: null
+        }
     },
     reducers: {
         removeComment: (state, action) => {
@@ -34,6 +40,10 @@ const commentsSlice = createSlice({
             state.comments = state.comments.map((comment) => {
 
             })
+        },
+
+        resetAllFilters: (state) => {
+            
         }
     },
     extraReducers: (builder) => {

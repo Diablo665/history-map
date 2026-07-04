@@ -9,6 +9,8 @@
     --input-bg: #ffffff;
     --delete-button: #f8d7da;
     --bg-panels-gallary: #ffffff;
+    --adm-comment-bg-1: linear-gradient(135deg, #fff3cd 0%, #fff9e2 100%);
+    --adm-comment-bg-2: linear-gradient(135deg, rgba(0, 123, 255, 0.08) 0%, rgba(255, 255, 255, 0.7) 100%);
 
 }
 
@@ -24,6 +26,8 @@
     --border-color: #80808038;
     --input-bg: #5c5c5ca8;
     --delete-button: #ce303f;
+    --adm-comment-bg-1: linear-gradient(135deg, #d8b493 0%, #d19f70 100%);
+    --adm-comment-bg-2: linear-gradient(135deg, rgba(0, 123, 255, 0.08) 0%, rgba(255, 255, 255, 0.7) 100%);
 }
 
 :root,
