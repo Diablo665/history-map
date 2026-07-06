@@ -11,6 +11,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.[contenthash].js',
         clean: true,
+        publicPath: '/'
     },
     mode: 'production',
     devtool: false,

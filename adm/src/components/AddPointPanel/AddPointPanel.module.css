@@ -12,7 +12,7 @@
     padding: 0.75rem 1rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
-    background-color: var(--input-bg);
+    background: var(--input-bg);
     color: var(--text);
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -49,12 +49,12 @@
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    background: #f8f9fa;
-    border: 2px dashed #e1e5e9;
+    background: var(--input-bg);
+    border: 2px dashed var(--border-color);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #6c757d;
+    color: var(--text);
     font-weight: 500;
 }
 
@@ -121,12 +121,12 @@
 
 .form input:invalid,
 .form textarea:invalid {
-    border-color: #dc3545;
+    border-color: var(--invalid);
 }
 
 .form input:valid,
 .form textarea:valid {
-    border-color: #28a745;
+    border-color: var(--valid);
 }
 
 @media (max-width: 768px) {

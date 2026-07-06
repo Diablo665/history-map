@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { getPhotoUrl } from "../../utils/helper";
 
 const Gallary = () => {
-    const API_URL = 'https://thevoiceofthefortress.fun/';
+    const API_URL = process.env.REACT_APP_GALLERY_API;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { photo, loading } = useSelector((state) => state.gallary);
 
     useEffect(() => {
 
-        fetch(`${API_URL}/api/gallery?limit=15`)
+        fetch(`${API_URL}?limit=15`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

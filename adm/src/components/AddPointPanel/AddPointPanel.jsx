@@ -3,7 +3,7 @@ import styles from './AddPointPanel.module.css';
 
 const AddPointPanel = ({ mapCoords }) => {
 
-    const API_URL = process.env.REACT_APP_MAIN_API
+    const API_URL = process.env.REACT_APP_POINTS_API
     const [formData, setFormData] = useState({
         latitude: '',
         longitude: '',
