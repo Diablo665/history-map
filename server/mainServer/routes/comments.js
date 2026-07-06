@@ -46,6 +46,24 @@ router.post('/', express.json(), async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    try {
+        const query = `
+        SELECT 
+            *
+        FROM comments
+        WHERE pointId = ? 
+        `
+
+        const [rows] = await pool.execute(query, [id]);
+        res.json(rows);
+
+    } catch (error) {
+        console.error('Ошибка при запросе комментариев: ', error)
+    }
+})
 
 router.get('/', async (req, res) => {
 
@@ -53,7 +71,8 @@ router.get('/', async (req, res) => {
         const query = `
         SELECT
             *
-        FROM comments
+        FROM comments 
+        WHERE pointId IS NULL
         ORDER BY id DESC 
         `
 
