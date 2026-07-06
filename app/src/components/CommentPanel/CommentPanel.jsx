@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openAdminPanel, setCommentId } from '../../store/adminPopupSlice';
 import { fetchComments, removeComment, addComment } from '../../store/commentsSlice';
 
-const CommentPanel = () => {
+const CommentPanel = ({from, pointId}) => {
     
     const [comment, setComment] = useState('');
     const [name, setName] = useState('');
@@ -14,16 +14,17 @@ const CommentPanel = () => {
     const [hoverRating, setHoverRating] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const API_URL = process.env.REACT_APP_COMMENT_API;
+    const MAIN_API_URL = process.env.REACT_APP_COMMENT_API;
+    const GET_API_URL = from === 'point' ? `${process.env.REACT_APP_COMMENT_API}/${pointId}` : process.env.REACT_APP_COMMENT_API;
     const dispatch = useDispatch();
     const { userId, username, isLogined, role } = useSelector((state) => state.login);
     const {comments, isLoading, error} = useSelector((state) => state.comments)
 
     useEffect(() => {
 
-        dispatch(fetchComments(API_URL))
+        dispatch(fetchComments(GET_API_URL))
 
-    }, [API_URL])
+    }, [GET_API_URL])
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,18 +43,29 @@ const CommentPanel = () => {
 
         try {
 
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
+            const data = from === 'point'
+                ? {
                     username: commentName,
                     comment: comment.trim(),
                     datetime: new Date().toISOString(),
                     grade: rating,
                     userid: userId,
-                })
+                    pointId: pointId
+                }
+                : {
+                    username: commentName,
+                    comment: comment.trim(),
+                    datetime: new Date().toISOString(),
+                    grade: rating,
+                    userid: userId,
+                };
+
+            const response = await fetch(MAIN_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             });
 
             const result = await response.json();
@@ -101,7 +113,7 @@ const CommentPanel = () => {
             try {
                 console.log('Удаляем комментарий:', commentId);
 
-                const response = await fetch(`${API_URL}/${commentId}`, {
+                const response = await fetch(`${MAIN_API_URL}/${commentId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

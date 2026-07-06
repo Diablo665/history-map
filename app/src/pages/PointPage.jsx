@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from './PointPage.module.css';
+import CommentPanel from '../components/CommentPanel/CommentPanel';
 
 const PointPage = () => {
     const { id } = useParams();
@@ -124,7 +125,6 @@ const PointPage = () => {
         }
     };
 
-
     return (
         <main className={styles.pageContainer}>
             <header className={styles.header}>
@@ -226,6 +226,8 @@ const PointPage = () => {
                     )}
                 </div>
             </section>
+
+            <CommentPanel from="point" pointId={id}/>
 
             {isModalOpen && currentPhoto && (
                 <div className={styles.modalOverlay} onClick={handleModalClose}>
