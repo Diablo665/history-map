@@ -12,6 +12,8 @@
     --title2: #333333;
     --border-color: #80808038;
     --input-bg: #ffffff;
+    --invalid: #dc3545;
+    --valid: #28a745;
 }
 
 [data-theme='dark'] {
@@ -28,6 +30,8 @@
     --title2: #b7b7b7;
     --border-color: #80808038;
     --input-bg: #5c5c5ca8;
+    --invalid: #dc354569;
+    --valid: #28a74569;
 }
 
 :root,

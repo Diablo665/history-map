@@ -10,7 +10,7 @@ const LoginForm = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const loginApi = process.env.REACT_APP_LOGIN_API;
+    const loginApi = process.env.REACT_APP_AUTH_API;
 
     const handleLogin = async (e) => {
         e.preventDefault();
