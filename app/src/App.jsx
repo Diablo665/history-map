@@ -10,7 +10,7 @@ import "./styles.css"
 
 function App() {
 
-    const VERIFY_API = process.env.REACT_APP_VERIFY_API;
+    const VERIFY_API = process.env.REACT_APP_AUTH_API;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
             }
 
             try {
-                const response = await fetch(VERIFY_API, {
+                const response = await fetch(`${VERIFY_API}/verify`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 

@@ -8,8 +8,7 @@ import { showNotification } from '../../utils/helper';
 const LoginForm = () => {
     const dispatch = useDispatch();
     const {isRegistration, isLoginFormOpen} = useSelector((state) => state.login);
-    const REG_API = process.env.REACT_APP_REG_API;
-    const LOG_API = process.env.REACT_APP_LOG_API;
+    const AUTH_API = process.env.REACT_APP_AUTH_API;
 
     const [formData, setFormData] = useState({
         login: '',
@@ -30,7 +29,7 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const url = isRegistration ? REG_API : LOG_API;
+            const url = isRegistration ? `${AUTH_API}/registration` : `${AUTH_API}/login`;
             const data = isRegistration
                 ? {
                     username: formData.username.trim(),

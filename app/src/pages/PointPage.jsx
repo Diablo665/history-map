@@ -13,14 +13,15 @@ const PointPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
-    document.querySelector('HTML').setAttribute('data-theme', localStorage.getItem('theme') || 'light')
+    document.querySelector('HTML').setAttribute('data-theme', localStorage.getItem('theme') || 'light');
 
-    const API_URL = 'https://thevoiceofthefortress.fun';
+    const site = "https://thevoiceofthefortress.fun";
+    const API_URL = process.env.REACT_APP_POINTS_API;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/data/${id}`);
+                const response = await fetch(`${API_URL}/${id}`);
                 if (!response.ok) throw new Error('Ошибка загрузки данных точки');
                 const data = await response.json();
 
@@ -94,7 +95,7 @@ const PointPage = () => {
     };
 
     const share = async () => {
-        const shareUrl = `${API_URL}/point/${id}`;
+        const shareUrl = `${site}/point/${id}`;
 
         if (navigator.share && window.isSecureContext) {
             try {
@@ -137,7 +138,7 @@ const PointPage = () => {
                     <div className={styles.mainPhotoWrapper}>
                         {currentPhoto ? (
                             <img
-                                src={`${API_URL}${currentPhoto}`}
+                                src={`${site}${currentPhoto}`}
                                 alt={title}
                                 className={styles.mainPhoto}
                                 onClick={() => handleModalOpen(currentPhotoIndex)}
@@ -159,7 +160,7 @@ const PointPage = () => {
                                     onClick={() => handleModalOpen(idx)}
                                 >
                                     <img
-                                        src={`${API_URL}${photo}`}
+                                        src={`${site}${photo}`}
                                         alt={`Фото ${idx + 1}`}
                                         className={styles.thumbImg}
                                         onError={(e) => {
@@ -215,7 +216,7 @@ const PointPage = () => {
                             {allAudio.map((audio, idx) => (
                                 <div key={idx} className={styles.audioItem}>
                                     <audio controls className={styles.audioPlayer}>
-                                        <source src={audio.startsWith('http') ? audio : `${API_URL}${audio}`} type="audio/mpeg" />
+                                        <source src={audio.startsWith('http') ? audio : `${site}${audio}`} type="audio/mpeg" />
                                         Ваш браузер не поддерживает аудио
                                     </audio>
                                     <span className={styles.audioLabel}>Запись {idx + 1}</span>
@@ -239,7 +240,7 @@ const PointPage = () => {
                     )}
 
                     <img
-                        src={`${API_URL}${currentPhoto}`}
+                        src={`${site}${currentPhoto}`}
                         alt={title}
                         className={styles.modalImage}
                         onClick={(e) => e.stopPropagation()}

@@ -13,7 +13,7 @@ const MapPanel = () => {
     const [zoom, setZoom] = useState(9);
 
     const apiKey = process.env.REACT_APP_MAP_API_KEY;
-    const API_URL = "https://thevoiceofthefortress.fun/";
+    const API_URL = process.env.REACT_APP_POINTS_API;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const MapPanel = () => {
 
     useEffect(() => {
         dispatch(setLoading(true));
-        fetch(`${API_URL}/api/point`)
+        fetch(`${API_URL}/point`)
             .then((response) => {
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 return response.json();

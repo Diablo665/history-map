@@ -1,3 +1,4 @@
+import React from 'react';
 import MapPanel from '../components/MapPanel/MapPanel';
 import EventPanel from '../components/EventPanel/EventPanel';
 import Gallary from '../components/Gallary/Gallary';

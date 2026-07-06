@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { getPhotoUrl } from "../../utils/helper";
 
 const EventPanel = () => {
-    const API_URL = 'https://thevoiceofthefortress.fun/';
+    const API_URL = process.env.REACT_APP_EVENT_API;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { lastEvents, loading } = useSelector((state) => state.events)
 
     useEffect(() => {
 
-        fetch(`${API_URL}/api/events?limit=15`)
+        fetch(`${API_URL}?limit=15`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
