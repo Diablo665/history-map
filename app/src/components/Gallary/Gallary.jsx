@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPhoto, setLoading } from "../../store/gallarySlice";
 import { useNavigate } from "react-router-dom";
 import { getPhotoUrl } from "../../utils/helper";
+import Loading from "../Loading/Loading";
 
 const Gallary = () => {
     const API_URL = process.env.REACT_APP_GALLERY_API;
@@ -32,7 +33,7 @@ const Gallary = () => {
 
     if (loading) {
         return (
-            <div> Загрузка </div>
+            <Loading size="large"/>
         )
     }
 

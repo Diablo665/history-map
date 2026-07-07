@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./EventPanel.module.css";
+import Loading from "../Loading/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { setLastEvents, setLoading } from "../../store/eventsSlice";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +33,7 @@ const EventPanel = () => {
 
     if (loading) {
         return (
-            <div> Загрузка </div>
+            <Loading size="small"/>
         )
     }
 

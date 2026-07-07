@@ -4,6 +4,7 @@ import { setPoints, setLoading } from "../../store/mapSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./MapPanel.module.css";
 import { getIconSize, getPhotoUrl } from "../../utils/helper";
+import Loading from "../Loading/Loading";
 
 const MapPanel = () => {
     const mapRef = useRef(null);
@@ -154,7 +155,7 @@ const MapPanel = () => {
     }, [isMapReady, markers, points, zoom]);
 
     if (loading) {
-        return <div className={styles.loading}>Загрузка точек...</div>;
+        return <Loading size="large"/>;
     }
 
     return (

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from './PointPage.module.css';
 import CommentPanel from '../components/CommentPanel/CommentPanel';
+import Loading from '../components/Loading/Loading';
 
 const PointPage = () => {
     const { id } = useParams();
@@ -56,7 +57,7 @@ const PointPage = () => {
         fetchData();
     }, [id]);
 
-    if (loading) return <div className={styles.loading}>Загрузка информации о точке…</div>;
+    if (loading) return <Loading size="large"/>;
     if (error) return <div className={styles.error}>Ошибка: {error}</div>;
     if (!point) return null;
 
