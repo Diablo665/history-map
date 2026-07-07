@@ -5,6 +5,7 @@ import { formatDate, showNotification } from '../../utils/helper';
 import { useSelector, useDispatch } from 'react-redux';
 import { openAdminPanel, setCommentId } from '../../store/adminPopupSlice';
 import { fetchComments, removeComment, addComment } from '../../store/commentsSlice';
+import Loading from '../Loading/Loading';
 
 const CommentPanel = ({from, pointId}) => {
     
@@ -135,7 +136,7 @@ const CommentPanel = ({from, pointId}) => {
 
     if(isLoading){
          return (
-            <div> Загрузка комментаиев </div>
+            <Loading size="medium"/>
         )
     }
 
