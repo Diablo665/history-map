@@ -6,7 +6,7 @@ import styles from "./MapPanel.module.css";
 import { getIconSize, getPhotoUrl } from "../../utils/helper";
 import Loading from "../Loading/Loading";
 
-const MapPanel = () => {
+const MapPanel = ({ key }) => {
     const mapRef = useRef(null);
     const containerRef = useRef(null);
     const [markers, setMarkers] = useState([]);
@@ -35,56 +35,100 @@ const MapPanel = () => {
                 console.error("Ошибка загрузки точек:", error);
                 dispatch(setLoading(false));
             });
+
     }, [dispatch]);
 
- useEffect(() => {
-
-    if (!apiKey) {
-        console.error("API Key не найден");
-        return;
-    }
-
-    const ensureScript = () => {
-        const scriptExists = !!document.querySelector('script[src*="api-maps.yandex.ru"]');
-        if (scriptExists) return;
-        const script = document.createElement("script");
-        script.src = `https://api-maps.yandex.ru/2.1/?apikey=${apiKey}&lang=ru_RU`;
-        script.async = true;
-        script.onload = () => {
-            initMap();
-        };
-        document.body.appendChild(script);
-    };
-
-    const initMap = () => {
-        if (!window.ymaps) {
-            setTimeout(initMap, 200);
-            return;
-        }
-
-        if (!containerRef.current) return;
-
-        window.ymaps.ready(() => {
-            const map = new window.ymaps.Map(containerRef.current, {
-                center: [54.815691702033824, 32.04313354492185],
-                zoom: zoom,
-                type: "yandex#map", 
-            });
-
-            mapRef.current = map;
-            setIsMapReady(true);
-            console.log("✅ Карта успешно создана");
-        });
-    };
-
-    ensureScript();
-
-}, [apiKey]);
 
     useEffect(() => {
-        if (!isMapReady || !mapRef.current || !window.ymaps) return;
+        if (!apiKey) {
+            console.error('API Key не найден');
+            return;
+        }
+        const loadYandexMaps = () => {
+
+            return new Promise((resolve, reject) => {
+                const scriptExists = !!document.querySelector('script[src*="api-maps.yandex.ru"]');
+
+                if (scriptExists) {
+
+                    const waitForYmaps = () => {
+                        if (typeof window.ymaps !== 'undefined') {
+                            resolve();
+                        } else {
+                            setTimeout(waitForYmaps, 50);
+                        }
+                    };
+
+                    waitForYmaps();
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = `https://api-maps.yandex.ru/2.1/?apikey=${apiKey}&lang=ru_RU`;
+                script.async = true;
+                script.onload = () => resolve();
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        };
+
+        const initMap = () => {
+
+            if (!containerRef.current || typeof window.ymaps === 'undefined') {
+                console.warn('Карта не создана — повтор через 1 секунду');
+                setTimeout(initMap, 100);
+                return;
+            }
+            if (mapRef.current) {
+                setIsMapReady(true);
+                mapRef.current.container.fitToViewport();
+                return;
+            }
+
+            try {
+                const map = new window.ymaps.Map(containerRef.current, {
+                    center: [54.815691702033824, 32.04313354492185],
+                    zoom: zoom,
+                    type: 'yandex#map',
+                });
+
+                mapRef.current = map;
+                setIsMapReady(true);
+
+                setTimeout(() => {
+                    if (mapRef.current) {
+                        mapRef.current.container.fitToViewport();
+                    }
+                }, 150);
+            } catch (e) {
+                console.error('💥 Ошибка создания карты:', e);
+                setTimeout(initMap, 100);
+            }
+        };
+
+        loadYandexMaps().then(initMap).catch(err => {
+            console.error('Не удалось загрузить Яндекс Карту:', err);
+        });
+
+        return () => {
+            if (mapRef.current) {
+                try {
+                    mapRef.current.destroy();
+                } catch (e) {
+                    console.warn('Ошибка при уничтожении карты:', e);
+                }
+                mapRef.current = null;
+            }
+            setIsMapReady(false);
+        };
+    }, [apiKey, zoom]);
+    
+    useEffect(() => {
         const map = mapRef.current;
 
+        if (!isMapReady || !map || !window.ymaps) {
+            return;
+        }
         markers.forEach((marker) => {
             if (marker) map.geoObjects.remove(marker);
         });
@@ -116,7 +160,7 @@ const MapPanel = () => {
                     iconLayout: "default#image",
                     iconImageHref: getPhotoUrl(point),
                     iconImageSize: getIconSize(zoom),
-                    iconImageOffset: [-getIconSize(zoom)[0]/2, -getIconSize(zoom)[1]/2],
+                    iconImageOffset: [-getIconSize(zoom)[0] / 2, -getIconSize(zoom)[1] / 2],
                 });
 
                 placemark.events.add('click', () => {
@@ -127,6 +171,7 @@ const MapPanel = () => {
                 newMarkers.push(placemark);
             } catch (e) {
                 console.error("💥 Ошибка создания маркера:", e);
+                skippedCount++;
             }
         });
 
@@ -135,7 +180,7 @@ const MapPanel = () => {
         if (skippedCount > 0) {
             console.warn(`⚠️ Пропущено ${skippedCount} точек с некорректными координатами`);
         }
-    }, [isMapReady, points, zoom, dispatch]);
+    }, [isMapReady, points, zoom, navigate]); // Убери dispatch из зависимостей — он лишний
 
     useEffect(() => {
         if (!isMapReady || !mapRef.current) return;
@@ -155,7 +200,7 @@ const MapPanel = () => {
     }, [isMapReady, markers, points, zoom]);
 
     if (loading) {
-        return <Loading size="large"/>;
+        return <Loading size="large" />;
     }
 
     return (
