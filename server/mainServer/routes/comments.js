@@ -1,16 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db/pool');
+const authenticateOwnComment = require('../middleware/authOwnComment')
+
 
 router.post('/', express.json(), async (req, res) => {
     try {
-        const { username, comment, datetime, grade, userid } = req.body;
+        const { username, comment, datetime, grade, userid, pointId } = req.body;
 
         if (!username || !comment || !datetime) {
             return res.status(400).json({
                 error: 'Обязательные поля: Имя, комментарий, дата'
             });
         }
+
+        const finalPointId = pointId === undefined ? null : pointId;
 
         let mysqlDateTime;
         try {
@@ -25,8 +29,8 @@ router.post('/', express.json(), async (req, res) => {
 
         try {
             const [insertResult] = await connection.execute(
-                'INSERT INTO `comments` (username, comment, datetime, grade, userid) VALUES (?, ?, ?, ?, ?)',
-                [username, comment, mysqlDateTime, grade, userid]
+                'INSERT INTO `comments` (username, comment, datetime, grade, userid, pointId) VALUES (?, ?, ?, ?, ?, ?)',
+                [username, comment, mysqlDateTime, grade, userid, finalPointId]
             );
 
             const newId = insertResult.insertId;
@@ -84,7 +88,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+
+router.delete('/:id', authenticateOwnComment, async (req, res) => {
     const id = parseInt(req.params.id);
 
     try {
@@ -100,45 +105,29 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.patch('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    const { adminComment } = req.body;
+router.patch('/:id', authenticateOwnComment, async (req, res) => {
 
-    if (isNaN(id) || id <= 0) {
-        return res.status(400).json({ error: 'Некорректный ID комментария' });
-    }
-    if (!adminComment || typeof adminComment !== 'string' || !adminComment.trim()) {
-        return res.status(400).json({ error: 'Текст комментария обязателен' });
-    }
+    const id = parseInt(req.params.id, 10);
 
-    const trimmedComment = adminComment.trim();
+    const newComment = req.body.newComment;
+    const newGrade = req.body.newGrade;
 
-    try {
+    try{
+
         const query = `
             UPDATE comments
-            SET comment = ?, grade = 0, isDeleted = 1
+            SET comment = ?, grade = ?
             WHERE id = ?
-        `;
 
-        const [result] = await pool.execute(query, [trimmedComment, id]);
+        `   
+        const [rows] = await pool.execute(query, [newComment, newGrade, id]);
 
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ error: 'Комментарий не найден' });
-        }
+        res.status(200).json(rows)
 
-        res.json({
-            message: 'Комментарий успешно обновлён и помечен как удалённый',
-            commentId: id,
-            updatedComment: trimmedComment
-        });
-    } catch (error) {
-        console.error('Ошибка при обновлении комментария:', error);
-        res.status(500).json({
-            error: 'Ошибка сервера при обновлении комментария',
-            data: error.message
-        });
+    }catch(err){
+        res.status(500).json({message: 'Ошибка сервера', error: err})
     }
-});
+})
 
 
 module.exports = router;
