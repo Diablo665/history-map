@@ -1,0 +1,197 @@
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalContent {
+    background: var(--bg-panels, #ffffff);
+    color: var(--text, #2b3a4a);
+    border-radius: 12px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 520px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: modalSlideIn 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: -8px -8px 16px -8px;
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    color: currentColor;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0.7;
+    padding: 4px 6px;
+    transition: opacity 0.2s;
+}
+
+.closeBtn:hover {
+    opacity: 1;
+}
+
+.formGroup {
+    margin: 0;
+}
+
+.formLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text, #2b3a4a);
+    opacity: 0.8;
+}
+
+.formInput,
+textarea.formInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 6px;
+    background: var(--input-bg, #ffffff);
+    color: var(--text, #2b3a4a);
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 96px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+textarea.formInput:focus {
+    outline: none;
+    border-color: var(--title1, #e74c3c);
+    background: var(--input-bg, #fff);
+}
+
+.ratingFieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.starsRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.starBtn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 6px 8px;
+    border-radius: 4px;
+    color: #aaa;
+    transition: transform 0.15s, background 0.2s, color 0.2s;
+}
+
+.starBtn:hover:not(:disabled) {
+    transform: scale(1.15);
+}
+
+.starFilled {
+    color: #fdcb6e;
+}
+
+.noGradeBtn {
+    color: var(--danger-text, #c0392b);
+    background: rgba(var(--danger-border, #e74c3c), 0.08);
+    padding: 6px 10px;
+}
+
+.noGradeBtn.noGradeActive {
+    background: rgba(var(--danger-border, #e74c3c), 0.18);
+    color: var(--danger-border, #e74c3c);
+}
+
+.hintText {
+    font-size: 0.85rem;
+    color: var(--text, #2b3a4a);
+    opacity: 0.7;
+    margin-top: 6px;
+    text-align: right;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btnPrimary,
+.btnSecondary {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    font-size: 0.925rem;
+    transition: all 0.2s;
+}
+
+.btnPrimary {
+    background: var(--title1, #e74c3c);
+    color: white;
+}
+
+.btnPrimary:hover:not(:disabled) {
+    background: #d33;
+}
+
+.btnPrimary:disabled {
+    background: #555;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.btnSecondary {
+    background: transparent;
+    color: var(--text, #2b3a4a);
+    border: 1px solid var(--border-color, #ccc);
+}
+
+.btnSecondary:hover:not(:disabled) {
+    border-color: var(--text, #2b3a4a);
+    color: var(--title1, #e74c3c);
+}

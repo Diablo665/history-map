@@ -11,6 +11,10 @@
     --bg-panels-gallary: #ffffff;
     --adm-comment-bg-1: linear-gradient(135deg, #fff3cd 0%, #fff9e2 100%);
     --adm-comment-bg-2: linear-gradient(135deg, rgba(0, 123, 255, 0.08) 0%, rgba(255, 255, 255, 0.7) 100%);
+    --activity-card-bg: #e7e7e7;
+    --danger-bg: rgba(231, 76, 60, 0.1);
+    --danger-border: #e74c3c;
+    --danger-text: #c0392b;
 
 }
 
@@ -28,6 +32,10 @@
     --delete-button: #ce303f;
     --adm-comment-bg-1: linear-gradient(135deg, #d8b493 0%, #d19f70 100%);
     --adm-comment-bg-2: linear-gradient(135deg, rgba(0, 123, 255, 0.08) 0%, rgba(255, 255, 255, 0.7) 100%);
+    --activity-card-bg: #7d7d7d29;
+    --danger-bg: rgba(231, 76, 60, 0.2); 
+    --danger-border: #ff6b6b;         
+    --danger-text: #ffaaaa;
 }
 
 :root,
