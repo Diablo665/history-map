@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { setIsLogined, setUserDate } from './store/loginSlice';
 import { Routes, Route } from 'react-router-dom'
 import MainPage from './pages/MainPage';
-import FAQPage from './pages/FAQPage';
-import PointPage from './pages/PointPage';
+import FAQPage from './pages/FAQPage/FAQPage';
+import PointPage from './pages/PointPage/PointPage';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 import "./styles.css"
 
 function App() {
-
     const VERIFY_API = process.env.REACT_APP_AUTH_API;
     const dispatch = useDispatch();
 
@@ -56,6 +56,7 @@ function App() {
                 <Route path='/' element={<MainPage />} />  
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="point/:id" element={<PointPage />} />
+                <Route path="profile/:id" element={<UserProfile />} />
                 <Route path="*" element={<MainPage />} />
             </Routes>
 
