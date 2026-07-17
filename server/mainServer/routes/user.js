@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const authenticateOwnResource = require('../middleware/authOwnResource');
 
 router.get('/:id', authenticateOwnResource, async (req, res) => {
-    
+
     const userId = parseInt(req.params.id, 10);
 
     if (isNaN(userId)) {
@@ -116,7 +116,7 @@ router.patch('/update-name/:id', authenticateOwnResource, async (req, res) => {
     }
 });
 
-router.post('/update-password/:id', authenticateOwnResource, async (req, res) => {
+router.patch('/update-password/:id', authenticateOwnResource, async (req, res) => {
     
     const userId = parseInt(req.params.id, 10)
     const { lastPassword, newPassword } = req.body;
