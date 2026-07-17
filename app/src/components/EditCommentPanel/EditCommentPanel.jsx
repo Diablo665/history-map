@@ -40,8 +40,6 @@ export const EditCommentPanel = ({ isOpen, comment, onSave, onClose }) => {
 
     }
 
-
-
     const handleSave = async () => {
         const trimmedText = text.trim();
         if (!trimmedText) {
